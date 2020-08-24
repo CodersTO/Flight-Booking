@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SearchTextField
 
 class ViewController: UIViewController {
 
@@ -15,6 +16,11 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
+    @IBAction func textfieldFromFunction(_ sender: SearchTextField) {
+        
+        
+        
+    }
+    
 }
 
