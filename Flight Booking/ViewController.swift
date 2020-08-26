@@ -18,11 +18,19 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         labelReturnDate.isHidden = true
         textfieldReturnDate.isHidden = true
+        
+        
+        textfieldDepartureDate.setInputViewDatePicker(target: self, selector: #selector(tapDoneOnDepartureDate))
+        textfieldReturnDate.setInputViewDatePicker(target: self, selector: #selector(tapDoneOnReturnDate))
     }
     
     
     //Variables or properties.
     
+    @IBOutlet weak var segmentedControlOutlet: UISegmentedControl!
+    @IBOutlet weak var searchTextFieldToAirport: SearchTextField!
+    @IBOutlet weak var searchTexeFieldFromAirport: SearchTextField!
+    @IBOutlet weak var textfieldDepartureDate: UITextField!
     @IBOutlet weak var labelReturnDate: UILabel!
     @IBOutlet weak var textfieldReturnDate: UITextField!
     let URL_FOR_AIRPORT_CODES_API = "https://www.air-port-codes.com/api/v1/autocomplete"
@@ -45,6 +53,7 @@ class ViewController: UIViewController {
             textfieldReturnDate.isHidden = true
         }
     }
+    
     
     
     
@@ -76,7 +85,7 @@ class ViewController: UIViewController {
                 
                 var stringOfAirports = [SearchTextFieldItem]()
                 let json = try JSON(data:data.data!)
-                           print(json)
+                         
                 let airports = json["airports"]
                 
                 for (_,airport) in airports{
@@ -126,7 +135,7 @@ class ViewController: UIViewController {
                  
                  var stringOfAirports = [SearchTextFieldItem]()
                  let json = try JSON(data:data.data!)
-                            print(json)
+                           
                  let airports = json["airports"]
                  
                  for (_,airport) in airports{
@@ -151,6 +160,97 @@ class ViewController: UIViewController {
          }
         
     }
+    
+    @IBAction func buttonSearchFlights(_ sender: UIButton) {
+        
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let flightController = storyboard.instantiateViewController(identifier: "flightController") as FlightViewController
+        
+        
+        let fromAirport = searchTexeFieldFromAirport.text!
+        let toAirport = searchTextFieldToAirport.text!
+        
+        let departureDate = textfieldDepartureDate.text!
+        let returnDate = textfieldReturnDate.text!
+        
+        let isOneWay = segmentedControlOutlet.selectedSegmentIndex == 0
+        
+        if(validate(fromAirport, toAirport, departureDate, returnDate,isOneWay ))
+        {
+            
+            
+        }
+        
+        
+       
+        
+        
+        
+        
+        
+    }
+    
+    
+    
+    func validate(_ from:String, _ to:String, _ departure:String, _ returnDate:String, _ isOneWay:Bool) -> Bool
+    {
+        
+        var returner = true
+        let alert = UIAlertController(title: "Error", message: "Message to be discuss later", preferredStyle: .alert)
+        
+        if(from == "")
+        {
+            alert.message = "Please Enter Where are you boarding from."
+            returner = false
+        }
+        else if(to == "")
+        {
+            alert.message = "Please enter your destination."
+            returner = false
+        }
+        else if(departure == "")
+        {
+            alert.message = "Choose the date of departure"
+            returner = false
+        }
+        else if(!isOneWay && returnDate == "")
+        {
+            alert.message = "Please enter the return date"
+        }
+        if(returner==false)
+        {
+            let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            
+            alert.addAction(action)
+            self.present(alert, animated: true)
+        }
+        return returner
+    }
+    
+    
+    
+    @objc func tapDoneOnDepartureDate()
+    {
+        if let datePicker = self.textfieldDepartureDate.inputView as? UIDatePicker { // 2-1
+                  let dateformatter = DateFormatter() // 2-2
+            dateformatter.dateFormat = "dd-MM-yyyy"// 2-3
+                  self.textfieldDepartureDate.text = dateformatter.string(from: datePicker.date) //2-4
+              }
+              self.textfieldDepartureDate.resignFirstResponder() // 2-5
+          
+    }
+    @objc func tapDoneOnReturnDate()
+       {
+           if let datePicker = self.textfieldReturnDate.inputView as? UIDatePicker { // 2-1
+                     let dateformatter = DateFormatter() // 2-2
+               dateformatter.dateFormat = "dd-MM-yyyy"// 2-3
+                     self.textfieldReturnDate.text = dateformatter.string(from: datePicker.date) //2-4
+                 }
+                 self.textfieldReturnDate.resignFirstResponder() // 2-5
+             
+       }
 }
     
 

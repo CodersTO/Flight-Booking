@@ -51,7 +51,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="searchTextFieldToLocation:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="FiP-gp-Ign"/>
+                                    <action selector="searchTextFieldToLocation:" destination="BYZ-38-t0r" eventType="editingChanged" id="LFx-M3-cZh"/>
                                 </connections>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="K2J-5u-82r">
@@ -77,6 +77,9 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textfieldDepartureDateAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CzY-bE-q0B"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose Return Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UZE-Q9-4ee">
                                 <rect key="frame" x="20" y="412" width="159" height="21"/>
@@ -95,6 +98,9 @@
                                 <rect key="frame" x="158" y="508" width="98" height="30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <state key="normal" title="Search Flights"/>
+                                <connections>
+                                    <action selector="buttonSearchFlights:" destination="BYZ-38-t0r" eventType="touchUpInside" id="89X-ou-3UU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -102,12 +108,47 @@
                     </view>
                     <connections>
                         <outlet property="labelReturnDate" destination="UZE-Q9-4ee" id="1bf-cX-cO2"/>
+                        <outlet property="searchTexeFieldFromAirport" destination="KoU-db-rZG" id="fjL-TC-khJ"/>
+                        <outlet property="searchTextFieldToAirport" destination="zqa-PC-eXV" id="3fX-Ct-ySZ"/>
+                        <outlet property="segmentedControlOutlet" destination="K2J-5u-82r" id="7UE-G8-1yN"/>
+                        <outlet property="textfieldDepartureDate" destination="tJh-jd-aDC" id="7t0-ul-hZi"/>
                         <outlet property="textfieldReturnDate" destination="a1V-l6-cq6" id="n8E-6v-wW0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-57.971014492753625" y="129.91071428571428"/>
+        </scene>
+        <!--Flight View Controller-->
+        <scene sceneID="g6D-Kq-89i">
+            <objects>
+                <viewController storyboardIdentifier="flightController" id="Bru-H8-B5i" customClass="FlightViewController" customModule="Flight_Booking" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gGE-mX-eup">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Flights" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="esX-m1-YGG">
+                                <rect key="frame" x="20" y="95" width="95" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FROM XXX TO YYY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LpB-PT-YmZ">
+                                <rect key="frame" x="20" y="139" width="149" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Njl-50-ZxF"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D14-nf-rUz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="568" y="130"/>
         </scene>
     </scenes>
 </document>
