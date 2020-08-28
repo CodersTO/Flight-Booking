@@ -176,11 +176,28 @@ class ViewController: UIViewController {
         let returnDate = textfieldReturnDate.text!
         
         let isOneWay = segmentedControlOutlet.selectedSegmentIndex == 0
-        
+        print("CLICK BUTTON")
         if(validate(fromAirport, toAirport, departureDate, returnDate,isOneWay ))
         {
             
+            let df = DateFormatter()
+            df.dateFormat = "dd-MM-yyyy"
             
+            flightController.departureDate = df.date(from: departureDate)
+            
+            
+            
+            flightController.fromAirportCode = String(fromAirport.prefix(3))
+            flightController.toAirportCode = String(toAirport.prefix(3))
+            
+            
+            if(returnDate != "")
+            {
+                flightController.returnDate = df.date(from: returnDate)
+            }
+            
+          
+            self.navigationController?.pushViewController(flightController, animated: true)
         }
         
         
