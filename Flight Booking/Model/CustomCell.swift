@@ -11,9 +11,25 @@ import FoldingCell
 
 class CustomCell : FoldingCell
 {
+    @IBOutlet weak var startLBL: UILabel!
+    @IBOutlet weak var endLBL: UILabel!
+    @IBOutlet weak var priceLBL: UILabel!
+    @IBOutlet weak var routeLBL: UILabel!
+    @IBOutlet weak var timeLBL: UILabel!
+    @IBOutlet weak var layoveLBL: UILabel!
+    @IBOutlet weak var startTimeLBL: UILabel!
+    @IBOutlet weak var finishTimeLBL: UILabel!
+    @IBOutlet weak var bookFlightBTN: UIButton!
     
     
-    
-    
-    
+    override func awakeFromNib() {
+          super.awakeFromNib()
+          // Initialization code
+      }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+          super.setSelected(selected, animated: animated)
+
+          // Configure the view for the selected state
+      }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Pty-nG-d7f">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bru-H8-B5i">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -147,10 +147,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="308" id="iMV-o5-O4d" customClass="CustomCell" customModule="Flight_Booking" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="308" id="iMV-o5-O4d">
                                         <rect key="frame" x="0.0" y="28" width="414" height="308"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iMV-o5-O4d" translatesAutoresizingMaskIntoConstraints="NO" id="vrO-A3-gE2">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="customCell" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iMV-o5-O4d" translatesAutoresizingMaskIntoConstraints="NO" id="vrO-A3-gE2" customClass="CustomCell" customModule="Flight_Booking" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="308"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -304,10 +304,24 @@
                                                 <constraint firstItem="oZ1-mD-7wr" firstAttribute="top" secondItem="k1S-ho-kcJ" secondAttribute="bottom" constant="8" id="nEt-be-XlY"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="itemCount">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
+                                            <outlet property="bookFlightBTN" destination="pXT-C4-rIo" id="6Iw-o4-VPK"/>
                                             <outlet property="containerView" destination="oZ1-mD-7wr" id="TAC-no-ZJW"/>
+                                            <outlet property="endLBL" destination="T6g-nq-Yi7" id="hKH-GT-sEH"/>
+                                            <outlet property="finishTimeLBL" destination="LmJ-8T-33M" id="OqX-bS-PXG"/>
                                             <outlet property="foregroundView" destination="k1S-ho-kcJ" id="Dnc-5D-ID8"/>
                                             <outlet property="foregroundViewTop" destination="k1S-ho-kcJ" id="stJ-f6-CN5"/>
+                                            <outlet property="layoveLBL" destination="y1w-EB-941" id="reB-6e-457"/>
+                                            <outlet property="priceLBL" destination="A7k-qw-ST4" id="Bb1-jG-NWb"/>
+                                            <outlet property="routeLBL" destination="leC-CZ-A02" id="pSc-Dm-eYc"/>
+                                            <outlet property="startLBL" destination="Wom-px-S0X" id="2ke-M9-wfi"/>
+                                            <outlet property="startTimeLBL" destination="7cd-VJ-PyE" id="kkm-VM-ad0"/>
+                                            <outlet property="timeLBL" destination="tye-wu-dC1" id="cvT-SU-OOI"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -316,10 +330,13 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="Njl-50-ZxF"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="FEK-nN-nUm" id="DVs-JP-6S0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D14-nf-rUz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1476.8115942028987" y="129.91071428571428"/>
+            <point key="canvasLocation" x="1761" y="130"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8Na-Ni-x5l">
