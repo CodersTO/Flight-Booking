@@ -21,9 +21,9 @@ class Trip {
     var time:String
     var layoverTime:String
     var layoverCount:Int
+    var airlineName:String
     
-    
-    init(arrival:String, destination:String, startTime:String, finishTime:String, ticketPrice:String, route:[String], time:String, layoverTime:String, layoverCount:Int )
+    init(arrival:String, destination:String, startTime:String, finishTime:String, ticketPrice:String, route:[String], time:String, layoverTime:String, layoverCount:Int, airlineName:String )
      {
             
         self.arrival = arrival
@@ -35,6 +35,7 @@ class Trip {
         self.time = time
         self.layoverTime = layoverTime
         self.layoverCount = layoverCount
+        self.airlineName = airlineName
         
     }
     
