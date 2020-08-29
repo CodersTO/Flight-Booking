@@ -22,6 +22,17 @@ class ViewController: UIViewController {
         
         textfieldDepartureDate.setInputViewDatePicker(target: self, selector: #selector(tapDoneOnDepartureDate))
         textfieldReturnDate.setInputViewDatePicker(target: self, selector: #selector(tapDoneOnReturnDate))
+        
+        
+        
+        if let destinations = UserDefaults.standard.array(forKey: "destinations")
+        {
+            //they exist
+            viewBookingsOutlet.isHidden = false
+        }
+        else{
+            viewBookingsOutlet.isHidden = true
+        }
     }
     
     
@@ -209,7 +220,16 @@ class ViewController: UIViewController {
         
     }
     
+    @IBOutlet weak var viewBookingsOutlet: UIButton!
     
+    @IBAction func viewBookingsClicked(_ sender: UIButton) {
+        
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let controller = storyboard.instantiateViewController(withIdentifier: "bookingController") as! BookingViewController
+        self.navigationController?.pushViewController(controller, animated: true)
+        
+    }
     
     func validate(_ from:String, _ to:String, _ departure:String, _ returnDate:String, _ isOneWay:Bool) -> Bool
     {

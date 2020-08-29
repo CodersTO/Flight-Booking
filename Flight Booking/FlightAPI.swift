@@ -17,7 +17,7 @@ class FlightAPI
     
     fileprivate static var API_KEY = "187443b46142e92708e290519f68e983"
     fileprivate static var URL_FOR_FLIGHT_SEARCH = "http://api.aviationstack.com/v1/flights"
-    static func fetchFromNetwork(destination:String, arrival:String, onDate:String)
+    static func fetchFromNetwork(destination:String, arrival:String,  onCompletion: @escaping ([Trip]) -> () )
     {
         
         
@@ -57,7 +57,7 @@ class FlightAPI
                     
                     
                     
-                                   for (key,tripObject) in data
+                                   for (_,tripObject) in data
                                    {
                                        let airlineName = tripObject["airline"]["name"].stringValue
                                        let startTime = tripObject["departure"]["actual"].stringValue
@@ -82,8 +82,8 @@ class FlightAPI
                                                         let finishDate = formatter.date(from: String(isoFinish)+".000Z")
                                                         
                                                                 
-                                                        let trip = Trip(arrival: arrival, destination: destination, startTime: startTime, finishTime: finishTime, ticketPrice: ticketPriceCalculator(from: startDate!, to:finishDate!), route: [], time: "", layoverTime: "", layoverCount: 0, airlineName: airlineName)
-                                           print(trip)
+                                        let trip = Trip(arrival: arrival, destination: destination, startTime: startDate!, finishTime: finishDate!, ticketPrice: ticketPriceCalculator(from: startDate!, to:finishDate!), route: [], time: getTotalDate(startDate!, finishDate!), layoverTime: "", layoverCount: 0, airlineName: airlineName)
+                                  
                                            trips.append(trip)
                                        }
                                        
@@ -112,6 +112,11 @@ class FlightAPI
         }
         
         
+        func getTotalDate(_ start:Date, _ finish:Date) -> TimeInterval
+        {
+             return start.distance(to: finish)
+        }
+        
         func ticketPriceCalculator(from:Date, to:Date) -> String
         {
             
@@ -127,12 +132,11 @@ class FlightAPI
         
         group.notify(queue: .main)
         {
-            print(trips)
            //FUCK YOU
+               // let delegate = UIApplication.shared.delegate as! AppDelegate
+          
             
-            UIApplication.shared.delegate.trips = trips
-            
-            
+            onCompletion(trips)
             
         }
         

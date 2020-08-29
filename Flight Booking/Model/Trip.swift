@@ -14,16 +14,16 @@ class Trip {
     
     var destination:String
     var arrival:String
-    var startTime:String
-    var finishTime:String
+    var startTime:Date
+    var finishTime:Date
     var ticketPrice:String
     var route:[String] // ["YYZ","MON","AMS","DEL"]
-    var time:String
+    var time:TimeInterval
     var layoverTime:String
     var layoverCount:Int
     var airlineName:String
     
-    init(arrival:String, destination:String, startTime:String, finishTime:String, ticketPrice:String, route:[String], time:String, layoverTime:String, layoverCount:Int, airlineName:String )
+    init(arrival:String, destination:String, startTime:Date, finishTime:Date, ticketPrice:String, route:[String], time:TimeInterval, layoverTime:String, layoverCount:Int, airlineName:String )
      {
             
         self.arrival = arrival

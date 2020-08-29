@@ -7,21 +7,29 @@
 //
 
 import Foundation
-import FoldingCell
+import UIKit
 
-class CustomCell : FoldingCell
+class CustomCell : UITableViewCell
 {
-    @IBOutlet weak var startLBL: UILabel!
-    @IBOutlet weak var endLBL: UILabel!
-    @IBOutlet weak var priceLBL: UILabel!
-    @IBOutlet weak var routeLBL: UILabel!
-    @IBOutlet weak var timeLBL: UILabel!
-    @IBOutlet weak var layoveLBL: UILabel!
-    @IBOutlet weak var startTimeLBL: UILabel!
-    @IBOutlet weak var finishTimeLBL: UILabel!
-    @IBOutlet weak var bookFlightBTN: UIButton!
+
     
+    @IBOutlet weak var labelDestination: UILabel!
     
+    @IBOutlet weak var labelArrival: UILabel!
+    
+    @IBOutlet weak var labelPrice: UILabel!
+
+    @IBOutlet weak var labelStartTime: UILabel!
+    
+    @IBOutlet weak var labelTotalTime: UILabel!
+    
+    @IBOutlet weak var labelFinishTime: UILabel!
+    
+    @IBAction func bookFlight(_ sender: UIButton) {
+        
+        
+        
+    }
     override func awakeFromNib() {
           super.awakeFromNib()
           // Initialization code
@@ -32,4 +40,6 @@ class CustomCell : FoldingCell
 
           // Configure the view for the selected state
       }
+    
+    
 }
