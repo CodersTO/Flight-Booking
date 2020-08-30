@@ -21,6 +21,42 @@ class FlightViewController: UIViewController, UITableViewDelegate , UITableViewD
     var trips:[Trip] = [Trip]()
     
     
+    
+    
+    func pushNotification(with title:String, and subtitle:String, on date:Date)
+    {
+        
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert,.sound,.badge], completionHandler: {
+            (granted, error) in
+            
+            if granted{
+                print("YES")
+            }
+            else
+            {
+                print(error)
+            }
+           
+        })
+        
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = subtitle
+        
+        
+        let components = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second], from: date)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+        
+        let req = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        center.add(req, withCompletionHandler: nil)
+    }
+    
+    
+    
+    
     //var cellHeights = (0..<self.trips.count).map { _ in C.CellHeight.close }
    
     @IBAction func bookFlight(_ sender: Any) {
@@ -46,7 +82,7 @@ class FlightViewController: UIViewController, UITableViewDelegate , UITableViewD
             var arrival = UserDefaults.standard.array(forKey: "arrival") ?? [String]()
             arrival.append(self.trips[self.indexSelected].arrival)
             UserDefaults.standard.setValue(arrival, forKey: "arrival")
-            print(self.trips[self.indexSelected].destination)
+            print(self.trips[self.indexSelected].arrival)
             
             var start = UserDefaults.standard.array(forKey: "start") ?? [Date]()
             start.append(self.trips[self.indexSelected].startTime)
@@ -66,6 +102,9 @@ class FlightViewController: UIViewController, UITableViewDelegate , UITableViewD
             let yesAction = UIAlertAction(title: "YES", style: .default, handler: nil)
             let noAction = UIAlertAction(title: "NO", style: .destructive, handler: {
                 action in
+                
+                
+                self.pushNotification(with: "Upcoming Booking", and: "You have a booking starting from "+self.trips[self.indexSelected].destination+" to "+self.trips[self.indexSelected].destination+"", on: self.trips[self.indexSelected].startTime.addingTimeInterval(-300))
                 
                 self.navigationController?.popViewController(animated: true)
                 

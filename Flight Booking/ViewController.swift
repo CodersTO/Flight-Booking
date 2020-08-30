@@ -57,38 +57,43 @@ class ViewController: UIViewController, WCSessionDelegate {
         
         
         
+    }
+    
+    
+    
+    
+    func pushNotification(with title:String, and subtitle:String, on date:Date)
+    {
+        
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert,.sound,.badge], completionHandler: {
             (granted, error) in
             
             if granted{
-                print("YEs")
+                print("YES")
             }
             else
             {
                 print(error)
             }
-            
-            var dateComponents = DateComponents()
-            dateComponents.minute = 32
-            dateComponents.hour = 3
-            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-            let content = UNMutableNotificationContent()
-            content.title = "Flight Booking Notification"
-            content.body = "Your flight is scheduled at this time. "
-            content.userInfo = ["customData":"kishore"]
-            content.sound = .default
-            
-            
-            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-            center.add(request, withCompletionHandler: {
-                error in
-                
-                print("Errrr")
-            })
+           
         })
         
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = subtitle
+        
+        
+        let components = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second], from: date)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+        
+        let req = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        center.add(req, withCompletionHandler: nil)
     }
+    
+    
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,10 +113,13 @@ class ViewController: UIViewController, WCSessionDelegate {
             
             let message = ["destinations":UserDefaults.standard.array(forKey: "destinations"),
                            "arrival":UserDefaults.standard.array(forKey: "arrival"),
-                           "start":UserDefaults.standard.array(forKey: "start"),
-                           "end":UserDefaults.standard.array(forKey: "end")]
+                           "start":UserDefaults.standard.array(forKey: "start")]
             
             WCSession.default.sendMessage(message as [String : Any], replyHandler: nil)
+        }
+        else
+        {
+            print("Session is not reachable")
         }
     }
     
@@ -161,6 +169,8 @@ class ViewController: UIViewController, WCSessionDelegate {
         sender.theme.cellHeight = 50
         
         
+        print("Doing Bullshit")
+        
         
         
         let headers = HTTPHeaders(["APC-Auth":API_KEY, "APC-Auth-Secret":API_SECRET])
@@ -175,7 +185,8 @@ class ViewController: UIViewController, WCSessionDelegate {
                 
                 var stringOfAirports = [SearchTextFieldItem]()
                 let json = try JSON(data:data.data!)
-                         
+                         print(json)
+                print("-------------------")
                 let airports = json["airports"]
                 
                 for (_,airport) in airports{

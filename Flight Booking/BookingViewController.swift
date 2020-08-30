@@ -45,6 +45,44 @@ class BookingViewController: UIViewController , UITableViewDelegate, UITableView
     
     
     
+    
+    func pushNotification(with title:String, and subtitle:String, on date:Date)
+    {
+        
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert,.sound,.badge], completionHandler: {
+            (granted, error) in
+            
+            if granted{
+                print("YES")
+            }
+            else
+            {
+                print(error)
+            }
+           
+        })
+        
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = subtitle
+        
+        
+        let components = Calendar.current.dateComponents([.year,.month,.day,.hour,.minute,.second], from: date)
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
+        
+        let req = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        
+        center.add(req, withCompletionHandler: nil)
+    }
+    
+    
+    
+    
+    
+    
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 142
     }
@@ -60,17 +98,8 @@ class BookingViewController: UIViewController , UITableViewDelegate, UITableView
     override func viewDidLoad() {
         
         
-        print("Entered in Bookings")
-        print(UserDefaults.standard.dictionaryRepresentation())
-        
-        UserDefaults.standard.removeObject(forKey: "destinations")
-        
-        UserDefaults.standard.removeObject(forKey: "arrival")
-        
-        UserDefaults.standard.removeObject(forKey: "start")
-        
-        
-        UserDefaults.standard.removeObject(forKey: "end")
+    
+       
         
         tableView.dataSource = self
         tableView.delegate = self
