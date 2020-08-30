@@ -41,22 +41,25 @@ class FlightViewController: UIViewController, UITableViewDelegate , UITableViewD
             var destinations = UserDefaults.standard.array(forKey: "destinations") ?? [String]()
             destinations.append(self.trips[self.indexSelected].destination)
             UserDefaults.standard.setValue(destinations, forKey: "destinations")
-            
+            print(self.trips[self.indexSelected].destination)
             
             var arrival = UserDefaults.standard.array(forKey: "arrival") ?? [String]()
             arrival.append(self.trips[self.indexSelected].arrival)
-            UserDefaults.standard.setValue(destinations, forKey: "arrival")
-            
+            UserDefaults.standard.setValue(arrival, forKey: "arrival")
+            print(self.trips[self.indexSelected].destination)
             
             var start = UserDefaults.standard.array(forKey: "start") ?? [Date]()
             start.append(self.trips[self.indexSelected].startTime)
-            UserDefaults.standard.setValue(destinations, forKey: "start")
+            UserDefaults.standard.setValue(start, forKey: "start")
             
             var end = UserDefaults.standard.array(forKey: "end") ?? [Date]()
-            start.append(self.trips[self.indexSelected].startTime)
-            UserDefaults.standard.setValue(destinations, forKey: "end")
+            end.append(self.trips[self.indexSelected].finishTime)
+            UserDefaults.standard.setValue(end, forKey: "end")
             
             // Further
+            
+            
+            
             
             
             let alert = UIAlertController(title: "Done", message: "Do you want to book more flights ?", preferredStyle: .alert)

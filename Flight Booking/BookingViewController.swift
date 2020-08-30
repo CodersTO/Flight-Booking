@@ -23,8 +23,30 @@ class BookingViewController: UIViewController , UITableViewDelegate, UITableView
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCellBooking") as! BookingCell
         
+        
+        
+        cell.destinationOutlet.text = destinationsArray![indexPath.item] as! String
+        
+        cell.arrivalOutlet.text = arrivalArray![indexPath.item] as! String
+        
+        
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd hh:mm:ss a"
+        
+        
+        cell.finishTime.text = df.string(from: endArray![indexPath.item] as! Date)
+        cell.startTime.text = df.string(from: startArray![indexPath.item] as! Date)
+        
+        
+        
         return cell
         
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 142
     }
     
     
@@ -38,7 +60,20 @@ class BookingViewController: UIViewController , UITableViewDelegate, UITableView
     override func viewDidLoad() {
         
         
+        print("Entered in Bookings")
+        print(UserDefaults.standard.dictionaryRepresentation())
         
+        UserDefaults.standard.removeObject(forKey: "destinations")
+        
+        UserDefaults.standard.removeObject(forKey: "arrival")
+        
+        UserDefaults.standard.removeObject(forKey: "start")
+        
+        
+        UserDefaults.standard.removeObject(forKey: "end")
+        
+        tableView.dataSource = self
+        tableView.delegate = self
         
     }
     

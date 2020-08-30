@@ -12,7 +12,7 @@
 		2E0A5FF224F964BC004E34DB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0A5FF124F964BC004E34DB /* String+Extension.swift */; };
 		2E0A5FF424F9A493004E34DB /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0A5FF324F9A493004E34DB /* Date+Extension.swift */; };
 		2E0A5FF824F9BAAD004E34DB /* BookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0A5FF724F9BAAD004E34DB /* BookingViewController.swift */; };
-		2E0A5FFA24F9C023004E34DB /* BookingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0A5FF924F9C023004E34DB /* BookingCell.swift */; };
+		2E45C59024FB52B8005B24DA /* BookingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E45C58F24FB52B8005B24DA /* BookingCell.swift */; };
 		2EFAF7B724F41FA5008CC5D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFAF7B624F41FA5008CC5D3 /* AppDelegate.swift */; };
 		2EFAF7B924F41FA5008CC5D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFAF7B824F41FA5008CC5D3 /* SceneDelegate.swift */; };
 		2EFAF7BB24F41FA5008CC5D3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFAF7BA24F41FA5008CC5D3 /* ViewController.swift */; };
@@ -84,8 +84,8 @@
 		2E0A5FF124F964BC004E34DB /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		2E0A5FF324F9A493004E34DB /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		2E0A5FF724F9BAAD004E34DB /* BookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BookingViewController.swift; path = "Flight Booking/BookingViewController.swift"; sourceTree = SOURCE_ROOT; };
-		2E0A5FF924F9C023004E34DB /* BookingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingCell.swift; sourceTree = "<group>"; };
 		2E351A4749374D4EEF91F884 /* Pods-Flight Booking.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flight Booking.release.xcconfig"; path = "Target Support Files/Pods-Flight Booking/Pods-Flight Booking.release.xcconfig"; sourceTree = "<group>"; };
+		2E45C58F24FB52B8005B24DA /* BookingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingCell.swift; sourceTree = "<group>"; };
 		2EFAF7B324F41FA5008CC5D3 /* Flight Booking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flight Booking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EFAF7B624F41FA5008CC5D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EFAF7B824F41FA5008CC5D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -233,9 +233,9 @@
 		2EFAF7FA24F87007008CC5D3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2E45C58F24FB52B8005B24DA /* BookingCell.swift */,
 				2EFAF7FB24F8701C008CC5D3 /* Trip.swift */,
 				2E0A5FEF24F940C4004E34DB /* CustomCell.swift */,
-				2E0A5FF924F9C023004E34DB /* BookingCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -492,7 +492,7 @@
 				2EFAF7FC24F8701D008CC5D3 /* Trip.swift in Sources */,
 				2EFAF7F724F57D60008CC5D3 /* TextField+Extension.swift in Sources */,
 				2EFAF7B724F41FA5008CC5D3 /* AppDelegate.swift in Sources */,
-				2E0A5FFA24F9C023004E34DB /* BookingCell.swift in Sources */,
+				2E45C59024FB52B8005B24DA /* BookingCell.swift in Sources */,
 				2E0A5FF424F9A493004E34DB /* Date+Extension.swift in Sources */,
 				2EFAF7B924F41FA5008CC5D3 /* SceneDelegate.swift in Sources */,
 				2E0A5FF824F9BAAD004E34DB /* BookingViewController.swift in Sources */,

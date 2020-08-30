@@ -12,4 +12,14 @@ import UIKit
 class BookingCell:UITableViewCell
 {
     
+    @IBOutlet weak var destinationOutlet: UILabel!
+    
+    @IBOutlet weak var arrivalOutlet: UILabel!
+    
+    @IBOutlet weak var finishTime: UILabel!
+    
+    @IBOutlet weak var startTime: UILabel!
+    
+    
+    
 }

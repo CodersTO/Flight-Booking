@@ -203,6 +203,12 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="arrivalOutlet" destination="WvB-mb-Rm8" id="SUm-uP-Vx8"/>
+                                            <outlet property="destinationOutlet" destination="ybr-jl-dIU" id="Ota-Bk-Q2C"/>
+                                            <outlet property="finishTime" destination="8OL-Gi-3OM" id="cNP-FI-pcG"/>
+                                            <outlet property="startTime" destination="DAs-7q-wPB" id="PU7-z8-NQf"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

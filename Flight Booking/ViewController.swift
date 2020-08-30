@@ -10,8 +10,22 @@ import UIKit
 import SearchTextField
 import Alamofire
 import SwiftyJSON
+import WatchConnectivity
+import UserNotifications
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +47,73 @@ class ViewController: UIViewController {
         else{
             viewBookingsOutlet.isHidden = true
         }
+        
+        
+        if(WCSession.isSupported())
+        {
+            WCSession.default.delegate = self
+            WCSession.default.activate()
+        }
+        
+        
+        
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert,.sound,.badge], completionHandler: {
+            (granted, error) in
+            
+            if granted{
+                print("YEs")
+            }
+            else
+            {
+                print(error)
+            }
+            
+            var dateComponents = DateComponents()
+            dateComponents.minute = 32
+            dateComponents.hour = 3
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+            let content = UNMutableNotificationContent()
+            content.title = "Flight Booking Notification"
+            content.body = "Your flight is scheduled at this time. "
+            content.userInfo = ["customData":"kishore"]
+            content.sound = .default
+            
+            
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+            center.add(request, withCompletionHandler: {
+                error in
+                
+                print("Errrr")
+            })
+        })
+        
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if let destinations = UserDefaults.standard.array(forKey: "destinations")
+        {
+            //they exist
+            viewBookingsOutlet.isHidden = false
+        }
+        else{
+            viewBookingsOutlet.isHidden = true
+        }
+        
+        
+        if(WCSession.default.isReachable)
+        {
+            
+            let message = ["destinations":UserDefaults.standard.array(forKey: "destinations"),
+                           "arrival":UserDefaults.standard.array(forKey: "arrival"),
+                           "start":UserDefaults.standard.array(forKey: "start"),
+                           "end":UserDefaults.standard.array(forKey: "end")]
+            
+            WCSession.default.sendMessage(message as [String : Any], replyHandler: nil)
+        }
+    }
     
     //Variables or properties.
     
